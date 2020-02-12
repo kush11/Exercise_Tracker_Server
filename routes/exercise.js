@@ -1,7 +1,6 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
-//var ObjectID = require('mongodb').ObjectID; 
-var ObjectID = require('mongodb').ObjectID
+
 router.route('/').get((req, res) => {
     Exercise.find()
         .then(exercise => res.json(exercise))
@@ -53,7 +52,7 @@ router.route('/update/:id').post((req, res) => {
     //             res.send(result);
     //         }
     //     })
-    Exercise.findById(new ObjectID(req.params.id))
+    Exercise.findById(req.params.id)
         .then(exercise => {
             exercise.userName = req.body.username;
             exercise.description = req.body.description;
